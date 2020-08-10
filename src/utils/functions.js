@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 function loadCommands(bot) {
-    fs.readdir('/src/commands/', (err, files) => {
+    fs.readdir('./src/commands/', (err, files) => {
 
         if (err) console.log(err);
     
@@ -11,7 +11,7 @@ function loadCommands(bot) {
         }
     
         jsfile.forEach((f, i) => {
-            const pull = require(`./commands/${f}`);
+            const pull = require(`../commands/${f}`);
             bot.commands.set(pull.config.name, pull);
             pull.config.aliases.forEach(alias => {
                 bot.aliases.set(alias, pull.config.name);
@@ -21,13 +21,13 @@ function loadCommands(bot) {
 }
 
 function loadEvents(bot) {
-    fs.readdir("/src/events/", (_err, files) => {
+    fs.readdir("./src/events/", (_err, files) => {
         files.forEach((file) => {
             if (!file.endsWith(".js")) return;
-            const event = require(`./events/${file}`);
+            const event = require(`../events/${file}`);
             let eventName = file.split(".")[0];
             bot.on(eventName, event.bind(null, bot));
-            delete require.cache[require.resolve(`./events/${file}`)];
+            delete require.cache[require.resolve(`../events/${file}`)];
         });
     });
 }
