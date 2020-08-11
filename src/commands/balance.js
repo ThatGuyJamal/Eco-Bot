@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
 module.exports.config = {
     name: "balance",
     description: "Checks your balance.",
-    usage: "eco balance",
+    usage: "eco balance <user>",
     accessableby: "Public Access",
     aliases: ['bal'],
     cooldown: 3
