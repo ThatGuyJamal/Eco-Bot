@@ -1,7 +1,7 @@
 const { findUser } = require('../utils/currencyFunctions');
 
 module.exports.run = async (bot, message, args) => {
-    let data = await findUser(message.author.id);
+    let data = await findUser(message.author.id, message.guild.id);
 
     if (!data) return;
 

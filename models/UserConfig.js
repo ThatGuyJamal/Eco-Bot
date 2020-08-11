@@ -5,6 +5,10 @@ const UserConfigSchema = new mongoose.Schema({
         required: true,
         type: String
     },
+    guildId: {
+        required: true,
+        type: String
+    },
     coins: {
         required: false,
         default: 0,

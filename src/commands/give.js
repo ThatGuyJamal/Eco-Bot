@@ -21,8 +21,8 @@ module.exports.run = async (bot, message, args) => {
         return message.channel.send('The amount must be a number');
     }
 
-    let sender = await findUser(message.author.id);
-    let reciever = await findUser(member.id);
+    let sender = await findUser(message.author.id, message.guild.id);
+    let reciever = await findUser(member.id, member.guild.id);
 
     if (parseInt(amount) > sender.coins) {
         return message.channel.send("You don't have that many coins!");

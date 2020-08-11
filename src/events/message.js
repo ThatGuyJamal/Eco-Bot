@@ -37,7 +37,7 @@ module.exports = async (bot, message) => {
             } else {
                 commandfile.run(bot, message, args);
                 const randomSpace = Math.round(Math.random() * 39) + 1;
-                giveBankSpace(message.author.id, randomSpace);
+                giveBankSpace(message.author.id, message.guild.id, randomSpace);
             }
 
             timestamps.set(message.author.id, now);
@@ -47,10 +47,11 @@ module.exports = async (bot, message) => {
     } else {
         if (message.author.bot) return;
 
-        await findUser(message.author.id).then(data => {
+        await findUser(message.author.id, message.guild.id).then(data => {
             if (!data) {
                 let newData = new userConfig({
-                    userId: message.author.id
+                    userId: message.author.id,
+                    guildId: message.guild.id
                 });
                 newData.save();
             }

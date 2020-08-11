@@ -4,11 +4,12 @@ const userConfig = require('../../models/UserConfig');
 module.exports = async (bot, member) => {
     if (member.user.bot) return;
 
-    let data = await findUser(member.id);
+    let data = await findUser(member.id, member.guild.id);
     
     if (!data) {
         const newData = new userConfig({
-            userId: member.id
+            userId: member.id,
+            guildId: member.guild.id
         });
         newData.save();
     }
