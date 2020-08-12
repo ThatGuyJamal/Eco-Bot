@@ -1,6 +1,7 @@
 const { Collection, MessageEmbed } = require('discord.js');
 const { findUser, giveBankSpace } = require('../utils/currencyFunctions');
 const userConfig = require('../../models/UserConfig');
+const prettyMilliseconds = require('pretty-ms');
 
 module.exports = async (bot, message) => {
     const prefix = 'eco';
@@ -30,7 +31,7 @@ module.exports = async (bot, message) => {
                     const timeLeft = (expirationTime - now) / 1000;
                     const cooldownEmbed = new MessageEmbed()
                     .setTitle('Cooldown')
-                    .setDescription(`This command is on a cooldown, try again in \`${timeLeft.toFixed(1)}\` **second(s)**.\n\nThe default cooldown on this command is \`${commandfile.config.cooldown}\` **second(s)**.`)
+                    .setDescription(`This command is on a cooldown, try again in \`${prettyMilliseconds(timeLeft)}\`.\n\nThe default cooldown on this command is \`${prettyMilliseconds(commandfile.config.cooldown * 1000)}\`.`)
                     .setColor(0x3c54b4);
                     return message.channel.send(cooldownEmbed);
                 }

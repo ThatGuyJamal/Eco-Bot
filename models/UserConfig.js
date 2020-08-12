@@ -27,6 +27,11 @@ const UserConfigSchema = new mongoose.Schema({
         required: false,
         default: 0,
         type: Number
+    },
+    daily: {
+        required: false,
+        default: Date.now() - 1,
+        type: Date
     }
 });
 
