@@ -1,10 +1,10 @@
-const { findUser } = require('../utils/currencyFunctions');
+const currencyFunctions = require('../utils/currencyFunctions');
 const userConfig = require('../../models/UserConfig');
 
 module.exports = async (bot, member) => {
     if (member.user.bot) return;
 
-    let data = await findUser(member.id, member.guild.id);
+    let data = await currencyFunctions.findUser(member.id, member.guild.id);
     
     if (!data) {
         const newData = new userConfig({

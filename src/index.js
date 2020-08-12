@@ -3,6 +3,7 @@ const { Client, Collection } = require('discord.js');
 const bot = new Client();
 const { loadCommands, loadEvents } = require('./utils/functions');
 const { connect } = require('mongoose');
+const currencyFunctions = require('./utils/currencyFunctions');
 
 connect(process.env.DB_URL, {
     useNewUrlParser: true,

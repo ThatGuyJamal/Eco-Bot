@@ -1,7 +1,7 @@
-const { giveCoins, findUser } = require('../utils/currencyFunctions');
+const currencyFunctions = require('../utils/currencyFunctions');
 
 module.exports.run = async (bot, message, args) => {
-    let data = await findUser(message.author.id, message.guild.id);
+    let data = await currencyFunctions.findUser(message.author.id, message.guild.id);
 
     if (!data) return;
 
@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
 
     const randomNumber = Math.round(Math.random() * 400);
 
-    await giveCoins(message.author.id, message.guild.id, randomNumber);
+    await currencyFunctions.giveCoins(message.author.id, message.guild.id, randomNumber);
 
     const response = [
         `**${randomPeople}** finally gave ${message.member} **${randomNumber}** coins.`,

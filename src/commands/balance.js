@@ -1,10 +1,10 @@
-const { findUser } = require('../utils/currencyFunctions');
+const currencyFunctions = require('../utils/currencyFunctions');
 const { MessageEmbed } = require('discord.js');
 
 module.exports.run = async (bot, message, args) => {
     const member = message.mentions.members.first() || message.guild.members.cache.get(args.join(' ')) || message.guild.members.cache.find(member => member.user.username.toLowerCase() === args.join(' ') || member.user.username === args.join(' ')) || message.member;
 
-    let data = await findUser(member.id, member.guild.id);
+    let data = await currencyFunctions.findUser(member.id, member.guild.id);
 
     if (!data) return;
 

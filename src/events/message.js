@@ -1,5 +1,5 @@
 const { Collection, MessageEmbed } = require('discord.js');
-const { findUser, giveBankSpace } = require('../utils/currencyFunctions');
+const currencyFunctions = require('../utils/currencyFunctions');
 const userConfig = require('../../models/UserConfig');
 const prettyMilliseconds = require('pretty-ms');
 
@@ -38,7 +38,7 @@ module.exports = async (bot, message) => {
             } else {
                 commandfile.run(bot, message, args);
                 const randomSpace = Math.round(Math.random() * 39) + 1;
-                giveBankSpace(message.author.id, message.guild.id, randomSpace);
+                currencyFunctions.giveBankSpace(message.author.id, message.guild.id, randomSpace);
             }
 
             timestamps.set(message.author.id, now);
@@ -48,7 +48,7 @@ module.exports = async (bot, message) => {
     } else {
         if (message.author.bot) return;
 
-        await findUser(message.author.id, message.guild.id).then(data => {
+        await currencyFunctions.findUser(message.author.id, message.guild.id).then(data => {
             if (!data) {
                 let newData = new userConfig({
                     userId: message.author.id,

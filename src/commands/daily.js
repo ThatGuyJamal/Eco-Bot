@@ -1,10 +1,10 @@
 const userConfig = require('../../models/UserConfig');
-const { findUser, giveCoins } = require('../utils/currencyFunctions');
+const currencyFunctions = require('../utils/currencyFunctions');
 const { MessageEmbed } = require('discord.js');
 const prettyMilliseconds = require('pretty-ms');
 
 module.exports.run = async (bot, message, args) => {
-    let data = await findUser(message.author.id, message.guild.id);
+    let data = await currencyFunctions.findUser(message.author.id, message.guild.id);
 
     const now = Date.now();
 
