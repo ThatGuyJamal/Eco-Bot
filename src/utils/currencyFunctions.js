@@ -4,7 +4,7 @@ class currencyFunctions {
     /**
      * 
      * @param {string} [userId] - A Discord user ID
-     * @param {striing} [guildId] - A Discord guild ID
+     * @param {string} [guildId] - A Discord guild ID
      * @param {string} [amount] - Amount of coins to give
      * 
      * @example 
